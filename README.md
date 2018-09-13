@@ -19,6 +19,5 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
    }
 ```
 * Start the payment activity
- Intent i = new Intent(this,PaymentActivity.class);
- startActivity(i);
+
 
