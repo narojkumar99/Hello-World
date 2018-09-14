@@ -26,11 +26,11 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
    Intent intentCardPayment=new Intent(MainActivity.this,CardPayment.class);
                 startActivity(intentCardPayment);
 ```
-* Step-2: set your card
-```java
+* Step-2: set your card:
+
         setCart('PUT_YOUR_AMOUNT','PUT_YOUR_CURRENCY','PUT_YOUR_ORDER_NUMBER','PUT_YOUR_ORDER_DESCRIPTION');
 	
-	```
+	
 * Step-3:
 ```java
    ATLPay.setSecretKey('PLACE_YOUR_SECRET_KEY_HERE');
