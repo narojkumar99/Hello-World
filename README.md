@@ -91,7 +91,8 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
             order.capture(order.getId(), new ATLPayObserver() {
                 @Override
                 public void onRequestSuccess() {
-                    //Call Server to Consolidate Amount
+		  // Everything went well  
+                   //As per your requirement or send to the DataBase or Success page.
                 }
                 @Override
                 public void onRequestFailure(ATLPayError atlPayError) {
@@ -127,4 +128,21 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
         }
     }
 ```
+
+* Step-5: SecurePayment:
+
+ webView.setWebViewClient(new WebViewClient() {
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                Toast.makeText(SecurePayment.this, "Oh no! " + description, Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.contains("/3dReturn")) {
+                  //As per your requirements here
+                    return true;
+                }
+                return false;
+            }
+        });
+        webView.loadUrl(getIntent().getStringExtra("frameUrl"));
 
