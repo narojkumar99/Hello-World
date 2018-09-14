@@ -130,7 +130,7 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
 ```
 
 * Step-5: SecurePayment:
-
+ ```java
  webView.setWebViewClient(new WebViewClient() {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 Toast.makeText(SecurePayment.this, "Oh no! " + description, Toast.LENGTH_SHORT).show();
@@ -145,4 +145,4 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
             }
         });
         webView.loadUrl(getIntent().getStringExtra("frameUrl"));
-
+```
