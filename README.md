@@ -43,7 +43,7 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
                     }
                     @Override
                     public void onRequestFailure(ATLPayError atlPayError) {
-                      
+                
 			//Error Happened
                         Constants.displayToast(mContext, atlPayError.message, true);
                         resetBtn();
@@ -52,9 +52,7 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
         );	
     }
 ```
-
-* Step-4:
-
+* Step-4:Creating a Token
  ```java
    private void initOrder() {
         String tokenId = token.getId();
@@ -75,10 +73,12 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
         order.create(new ATLPayObserver() {
             @Override
             public void onRequestSuccess() {
+	     // Everything went well  
                 processOrder();
             }
             @Override
             public void onRequestFailure(ATLPayError atlPayError) {
+	    //Error Happened
                 Constants.displayToast(mContext, atlPayError.message, true);
             }
         });
