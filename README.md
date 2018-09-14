@@ -18,7 +18,8 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
     compile 'com.atlpay.android'
    }
 ```
-requires at minimum Android 4.1 (API Level 16).
+## Requirements
+ minimum Android 4.1 (API Level 16).
 # Usage
 * Start the payment activity
 ```java
