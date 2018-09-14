@@ -26,4 +26,23 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
    Intent i = new Intent(this,PaymentActivity.class);
  startActivity(i);
 ```
+```java
+ ATLPay.setSecretKey('PLACE_YOUR_SECRET_KEY_HERE');
+        token = new Token(mContext);
+        token.create(card,ipAddress,uuid,'PLACE_YOUR_EMAIL_ID_HERE', new ATLPayObserver() {
+                    @Override
+                    public void onRequestSuccess() {
+		    // Everything went well
+                        mProgressDialog.dismiss();
+                        initOrder();
+                    }
+                    @Override
+                    public void onRequestFailure(ATLPayError atlPayError) {
+                        mProgressDialog.dismiss();
+			//Error Happened
+                        Constants.displayToast(mContext, atlPayError.message, true);
+                        resetBtn();
+                    }
+                }
+        );
 
