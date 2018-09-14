@@ -43,16 +43,15 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
                     }
                     @Override
                     public void onRequestFailure(ATLPayError atlPayError) {
-                
 			//Error Happened
                         Constants.displayToast(mContext, atlPayError.message, true);
-                        resetBtn();
+                      
                     }
                 }
         );	
     }
 ```
-* Step-4:Creating a Token
+* Step-4:  Creating a Token
  ```java
    private void initOrder() {
         String tokenId = token.getId();
@@ -86,5 +85,46 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
 ```
 
  * Step-5:
-
+ ```java
+ public void processOrder() {
+        if (token.getRedirectStatus().equals("NOT_AVAILABLE")) {
+            order.capture(order.getId(), new ATLPayObserver() {
+                @Override
+                public void onRequestSuccess() {
+                    //Call Server to Consolidate Amount
+                }
+                @Override
+                public void onRequestFailure(ATLPayError atlPayError) {
+                    if (null != atlPayError.errorCode) {
+                        if (atlPayError.errorCode == "INVALID_CVC") {
+                            Constants.displayToast(mContext, atlPayError.message, true);
+                        } else if (atlPayError.errorCode == "INCORRECT_CVC") {
+                            Constants.displayToast(mContext, atlPayError.message, true);
+                        } else if (atlPayError.errorCode == "INCORRECT_ZIPCODE") {
+                            Constants.displayToast(mContext, atlPayError.message, true);
+                        } else if (atlPayError.errorCode == "PROCESSING_ERROR") {
+                            Constants.displayToast(mContext, atlPayError.message, true);
+                        } else if (atlPayError.errorCode == "EXPIRED_CARD") {
+                            Constants.displayToast(mContext, atlPayError.message, true);
+                        } else if (atlPayError.errorCode == "UNKNOWN_ERROR") {
+                            Constants.displayToast(mContext, atlPayError.message, true);
+                        } else if (atlPayError.errorCode == "DECLINED") {
+                            Constants.displayToast(mContext, "Your Card has been declined. Bank Returned : " + atlPayError.declineCode, true);
+                        }
+                    } else {
+                        Constants.displayToast(mContext, atlPayError.message, true);
+                    }
+                    Intent mIntent = new Intent(mContext, CardPayment.class);
+                    startActivity(mIntent);
+                    finish();
+                }
+            });
+        } else {
+            Intent intent = new Intent(CardPayment.this, SecurePayment.class);
+            intent.putExtra("frameUrl", order.getAuthUrl());
+            startActivity(intent);
+            finish();
+        }
+    }
+```
 
