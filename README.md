@@ -28,10 +28,10 @@ The ATLPay Android SDK makes it easy to add atlpay payments to mobile apps.
 ```
 * Step-2:
  PUT_YOUR----->AMOUNT,CURRENCY,ORDER_NUMBER,ORDER_DESCRIPTION <----HERE
- ```java
+ 
         setCart(12.48, "GBP", "69022BEPF2", "Infinit Card TopUp");
 	
-	```
+	
 	
 * Step-3:
  ATLPay.setSecretKey('PLACE_YOUR_SECRET_KEY_HERE');
